@@ -31,8 +31,8 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
     final items = const [
       (Icons.home_outlined, 'Inicio'),
       (Icons.verified_outlined, 'Casos de macotas'),
-      (Icons.help_outline, 'Preguntas'),
       (Icons.map_outlined, 'Mapa'),
+      (Icons.help_outline, 'Preguntas'),
       (Icons.info_outline, 'Quiénes somos'),
       (Icons.attach_money_outlined, 'Precios'),
     ];

@@ -39,7 +39,7 @@ class _AppShellState extends State<AppShell> {
   ];
 
   // Mapeo TopNav (web) -> índices reales
-  static const _topToPage = [0, 7, 2, 3, 4, 5];
+  static const _topToPage = [0, 7, 3, 2, 4, 5];
 
   // Ítems del menú inferior (lineal, con píldora animada)
   static const List<_NavSpec> _bottomItems = [
@@ -59,8 +59,8 @@ class _AppShellState extends State<AppShell> {
   String get _title => switch (_pageIndex) {
     0 => 'Inicio',
     7 => 'Casos de mascotas',
-    2 => 'Preguntas',
     3 => 'Mapa',
+    2 => 'Preguntas',
     4 => 'Quiénes somos',
     5 => 'Precios',
     6 => 'Mis Mascotas',
