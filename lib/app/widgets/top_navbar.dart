@@ -16,7 +16,7 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.selectedIndex,
     required this.onSelect,
-    this.logoAsset = 'assets/brand/logo.png',
+    this.logoAsset = 'logo.png',
     this.showAuthActions = true,
     this.onLogin,
     this.onRegister,
@@ -27,13 +27,13 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    const bg = Color(0xFF32BAEA); // cyan branding
+    const bg = Color(0xFF32BAEA);
     final items = const [
       (Icons.home_outlined, 'Inicio'),
-      (Icons.info_outline, 'Quiénes somos'),
+      (Icons.verified_outlined, 'Casos de macotas'),
       (Icons.help_outline, 'Preguntas'),
       (Icons.map_outlined, 'Mapa'),
-      (Icons.verified_outlined, 'Reuniones'),
+      (Icons.info_outline, 'Quiénes somos'),
       (Icons.attach_money_outlined, 'Precios'),
     ];
 
@@ -45,40 +45,29 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
         child: LayoutBuilder(
           builder: (_, c) {
             final w = c.maxWidth;
-            final compact =
-                w < 1100; // cuando el ancho es reducido, comprimimos labels
+            final compact = w < 1100;
 
             return Container(
               height: preferredSize.height,
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 children: [
-                  // LOGO (click => Inicio)
+                  // LOGO (clic = Inicio)
                   InkWell(
                     onTap: () => onSelect(0),
                     child: Row(
                       children: [
                         Image.asset(
-                          'logo.png',
+                          logoAsset,
                           height: 36,
                           fit: BoxFit.contain,
-                          errorBuilder: (_, __, ___) => Text(
-                            'BuscaDog',
-                            style: Theme.of(context).textTheme.titleLarge
-                                ?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                          ),
+                          errorBuilder: (_, __, ___) => const SizedBox.shrink(),
                         ),
                       ],
                     ),
                   ),
-
                   const SizedBox(width: 16),
-                  // DIVISOR
                   Container(width: 1, height: 32, color: Colors.white24),
-
                   const SizedBox(width: 12),
 
                   // ITEMS CENTRALES
@@ -94,7 +83,8 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
                                 horizontal: 6,
                               ),
                               child: TextButton.icon(
-                                onPressed: () => onSelect(i),
+                                onPressed: () =>
+                                    onSelect(i), // i = índice TopNav
                                 icon: Icon(
                                   items[i].$1,
                                   size: 20,
@@ -129,7 +119,6 @@ class TopNavBar extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                   ),
-
                   // CTAs DERECHA (solo web/escritorio)
                   if (kIsWeb && showAuthActions) ...[
                     const SizedBox(width: 12),
